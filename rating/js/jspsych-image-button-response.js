@@ -27,7 +27,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             image_html: {
                 type: jsPsych.plugins.parameterType.IMAGE,
                 pretty_name: 'image HTML',
-                default: '<img src="%imageURL%" height="400" width="400" id="image_html">',
+                default: '<img src="%imageURL%" height="400" width="400" id="image_html" style="display:block;margin-left:auto;margin-right:auto">',
                 array: true,
                 description: 'The html of the image cue used to prompt drawing. Can create own style.'
             },
@@ -112,6 +112,7 @@ jsPsych.plugins["image-button-response"] = (function() {
 
         // wrapper function to show everything, call this when you've waited what you
         // reckon is long enough for the data to come back from the db
+	var start_time = 0;
         function show_display() {
 
             var html = "";
@@ -154,7 +155,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             display_element.innerHTML = html;
 
             // start timing
-            var start_time = performance.now();
+            start_time = performance.now();
 
             for (var i = 0; i < trial.choices.length; i++) {
                 display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
@@ -181,11 +182,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             var rt = end_time - start_time;
             response.button = choice;
             response.rt = rt;
-
-            // after a valid response, the stimulus will have the CSS class 'responded'
-            // which can be used to provide visual feedback that a response was recorded
-            display_element.querySelector('#jspsych-image-button-response-stimulus').className += ' responded';
-
+	    
             // disable all the buttons after a response
             var btns = document.querySelectorAll('.jspsych-image-button-response-button button');
             for(var i=0; i<btns.length; i++){
@@ -200,9 +197,6 @@ jsPsych.plugins["image-button-response"] = (function() {
 
         // function to end trial when it is time
         function end_trial() {
-            // disable button to prevent double firing
-            submit_button.disabled=true;
-
 
             // data saving
             var trial_data = {
@@ -216,8 +210,7 @@ jsPsych.plugins["image-button-response"] = (function() {
                 button_pressed: response.button,
                 category: trial.category,
                 trialNum: trial.trialNum,
-                pngData: dataURL,
-                startTrialTime: startTrialTime,
+                startTrialTime: start_time,
                 endTrialTime: Date.now()
             };
 
