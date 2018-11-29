@@ -84,7 +84,7 @@ function setupGame () {
         console.log("main on start");
         oldCallback = newCallback;
         var newCallback = function(d) {
-            console.log('data retrieved from db: ',d);
+            console.log('data retrieved from db: ' + d);
             trial.category = d.category;
             trial.image_url = d.image_url;
             trial.age = d.age;
@@ -102,8 +102,7 @@ function setupGame () {
         var turkInfo = jsPsych.turk.turkInfo();
 
         // pull out info from server
-        var meta = d.meta;
-        var id = d.id;
+        var id = d.session_id;
 
         // Bind trial data with boilerplate
         var trials = _.map(_.rangeRight(num_trials), function(trialData, i) {
