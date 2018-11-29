@@ -84,12 +84,23 @@ io.on('connection', function (socket) {
     }
 
     // Send client stims
-    initializeWithTrials(socket, UUID());
+    // initializeWithTrials(socket, UUID());
+    socket.on('getStim', function(data) {
+        sendSingleStim(socket, data);
+    });
 
     // Set up callback for writing client data to mongo
     socket.on('currentData', function(data) {
         console.log('currentData received: ' + JSON.stringify(data));
         writeDataToMongo(data);
+    });
+
+    // upon connecting, tell the client some metainfo
+    socket.emit('onConnected', {
+        id: UUID(),
+        meta: {
+            num_trials: num_trials
+        }
     });
 
 
@@ -128,40 +139,60 @@ function checkPreviousParticipant (workerId, callback) {
         'http://localhost:6002/db/exists',
         {json: postData},
         (error, res, body) => {
-            try {
-                if (!error && res.statusCode === 200) {
-                    console.log("success! Received data " + JSON.stringify(body));
-                    callback(body);
-                } else {
-                    throw `${error}`;
-                }
-            }
-            catch (err) {
-                    console.log(err);
-                    console.log('no database; allowing participant to continue');
-                    return callback(false);
-            }
-        }
-    );
+        try {
+            if (!error && res.statusCode === 200) {
+        console.log("success! Received data " + JSON.stringify(body));
+        callback(body);
+    } else {
+        throw `${error}`;
+    }
+}
+catch (err) {
+        console.log(err);
+        console.log('no database; allowing participant to continue');
+        return callback(false);
+    }
+}
+);
 };
 
-function initializeWithTrials(socket, id) {
-    sendPostRequest('http://localhost:6002/db/getstims', {
+
+function sendSingleStim(socket, data) {
+    sendPostRequest('http://localhost:6002/db/getsinglestim', {
         json: {
             dbname: 'stimuli',
             colname: 'kiddraw_tracing_eval',
             numTrials: 1,
-            gameid: id
+            gameid: data.gameID
         }
     }, (error, res, body) => {
         if (!error && res.statusCode === 200) {
-        // send trial list (and id) to client
-        socket.emit('onConnected', body);
-    }else {
+        socket.emit('stimulus', body);
+    } else {
         console.log(`error getting stims: ${error} ${body}`);
+        console.log(`falling back to local stimList`);
     }
 });
 }
+
+
+// function initializeWithTrials(socket, id) {
+//     sendPostRequest('http://localhost:6002/db/getstims', {
+//         json: {
+//             dbname: 'stimuli',
+//             colname: 'kiddraw_tracing_eval',
+//             numTrials: 1,
+//             gameid: id
+//         }
+//     }, (error, res, body) => {
+//         if (!error && res.statusCode === 200) {
+//         // send trial list (and id) to client
+//         socket.emit('onConnected', body);
+//     }else {
+//         console.log(`error getting stims: ${error} ${body}`);
+//     }
+// });
+// }
 
 function writeDataToMongo (data) {
     sendPostRequest(
