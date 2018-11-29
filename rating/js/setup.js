@@ -72,31 +72,6 @@ function setupGame () {
 
     // number of trials to fetch from database is defined in ./app.js
     var socket = io.connect();
-    // at end of each trial save score locally and send data to server
-    var main_on_finish = function(data) {
-        if (data.score) {
-            score = data.score;
-        }
-        socket.emit('currentData', data);
-    };
-
-    var main_on_start = function(trial) {
-        console.log("main on start");
-        oldCallback = newCallback;
-        var newCallback = function(d) {
-            console.log('data retrieved from db: ' + d);
-            trial.category = d.category;
-            trial.image_url = d.image_url;
-            trial.age = d.age;
-            trial.session_id = d.session_id;
-
-        };
-        socket.removeListener('stimulus', oldCallback);
-        socket.on('stimulus', newCallback);
-        // call server for stims
-        socket.emit('getStim', {gameID: id});
-    };
-
     socket.on('onConnected', function(d) {
         // get workerId, etc. from URL (so that it can be sent to the server)
         var turkInfo = jsPsych.turk.turkInfo();
@@ -104,6 +79,31 @@ function setupGame () {
         // pull out info from server
         var id = d.session_id;
 
+	// at end of each trial save score locally and send data to server
+	var main_on_finish = function(data) {
+            if (data.score) {
+		score = data.score;
+            }
+            socket.emit('currentData', data);
+	};
+
+	var main_on_start = function(trial) {
+            console.log("main on start");
+            oldCallback = newCallback;
+            var newCallback = function(d) {
+		console.log('data retrieved from db: ',d);
+		trial.category = d.category;
+		trial.image_url = d.image_url;
+		trial.age = d.age;
+		trial.session_id = d.session_id;
+
+            };
+            socket.removeListener('stimulus', oldCallback);
+            socket.on('stimulus', newCallback);
+            // call server for stims
+            socket.emit('getStim', {gameID: id});
+	};
+	
         // Bind trial data with boilerplate
         var trials = _.map(_.rangeRight(num_trials), function(trialData, i) {
             return _.extend(new Trial, trialData, {
