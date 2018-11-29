@@ -122,7 +122,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             }
 
             // place the target drawing inside the image container (which has fixed location)
-            html += '<div id="img_container" style="display:none">';
+            html += '<div id="img_container">';
 
             var img_html_replaced = trial.image_html.replace('imageURL', trial.image_url);
             html += img_html_replaced;
@@ -156,7 +156,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             var start_time = performance.now();
 
             for (var i = 0; i < trial.choices.length; i++) {
-                display_element.querySelector('#jspsych-image-button-response-button' + i).addEventListener('click', function (e) {
+                display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
                     var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
                     after_response(choice);
                 });
@@ -226,7 +226,6 @@ jsPsych.plugins["image-button-response"] = (function() {
 
             // end trial
             jsPsych.finishTrial(trial_data);
-
 
 
         };
