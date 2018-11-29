@@ -27,7 +27,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             image_html: {
                 type: jsPsych.plugins.parameterType.IMAGE,
                 pretty_name: 'image HTML',
-                default: '<img src="/demo.png" height="448" width="448" id="image_html">',
+                default: '<img src="%imageURL%" height="400" width="400" id="image_html">',
                 array: true,
                 description: 'The html of the image cue used to prompt drawing. Can create own style.'
             },
@@ -123,9 +123,10 @@ jsPsych.plugins["image-button-response"] = (function() {
 
             // place the target drawing inside the image container (which has fixed location)
             html += '<div id="img_container">';
-
-            var img_html_replaced = trial.image_html.replace('imageURL', trial.image_url);
-            html += img_html_replaced;
+	    
+            var img_html_replaced = trial.image_html.replace('%imageURL%', trial.image_url);
+	    console.log('img_html_replaced' + img_html_replaced);
+	    html += img_html_replaced;
 
             html += '</div>';
 

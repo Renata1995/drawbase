@@ -92,7 +92,7 @@ function setupGame () {
             oldCallback = newCallback;
             var newCallback = function(d) {
                 trial.category = d.category;
-                trial.image_url = d.image_url;
+                trial.image_url = d.img_url;
                 trial.age = d.age;
                 trial.session_id = d.session_id;
 
@@ -116,7 +116,7 @@ function setupGame () {
             });
         });
 
-
+	
         // Stick welcome trial at beginning & goodbye trial at end
         if (!turkInfo.previewMode) {
             trials.unshift(welcomeTrial);
@@ -125,7 +125,7 @@ function setupGame () {
         }
         trials.push(goodbyeTrial);
 
-        console.log(trials.length);
+        console.log(trials);
 
         jsPsych.init({
             timeline: trials,
