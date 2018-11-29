@@ -151,8 +151,7 @@ function initializeWithTrials(socket, id) {
         json: {
             dbname: 'stimuli',
             colname: 'kiddraw_tracing_eval',
-            numTrials: 1,
-            gameid: id
+            numTrials: 1
         }
     }, (error, res, body) => {
 	console.log(“statusCode: “+res.statusCode);
