@@ -124,7 +124,7 @@ function checkPreviousParticipant (workerId, callback) {
         projection: {'_id': 1}
     };
     sendPostRequest(
-        'http://localhost:6000/db/exists',
+        'http://localhost:6002/db/exists',
         {json: postData},
         (error, res, body) => {
             try {
@@ -170,7 +170,7 @@ function initializeWithTrials(socket, id) {
 
 function writeDataToMongo (data) {
     sendPostRequest(
-        'http://localhost:6000/db/insert',
+        'http://localhost:6002/db/insert',
         { json: data },
         (error, res, body) => {
         if (!error && res.statusCode === 200) {
