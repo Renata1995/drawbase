@@ -146,6 +146,7 @@ function checkPreviousParticipant (workerId, callback) {
 };
 
 function initializeWithTrials(socket, id) {
+    console.log(“init”);
     sendPostRequest('http://localhost:6002/db/getstims', {
         json: {
             dbname: 'stimuli',
@@ -154,6 +155,7 @@ function initializeWithTrials(socket, id) {
             gameid: id
         }
     }, (error, res, body) => {
+	console.log(“statusCode: “+res.statusCode);
         if (!error && res.statusCode === 200) {
         // send trial list (and id) to client
         socket.emit('onConnected', body);

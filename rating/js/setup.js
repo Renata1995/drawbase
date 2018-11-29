@@ -66,7 +66,7 @@ function Trial () {
     this.image_url = "/demo.png";
     this.category ='square';
     this.choices = ['1','2','3','4','5'];
-    this.dev_mode = tmp.dev_mode
+    this.dev_mode = false
 }
 
 function setupGame () {
@@ -105,9 +105,10 @@ function setupGame () {
         // pull out info from server
         var meta = d.meta;
         var id = d.id;
-
+	
+	console.log(d.trials);
         // Bind trial data with boilerplate
-        var trials = _.map(_.shuffle(d.trials), function(trialData, i) {
+        var trials = _.map(_.rangeRight(10), function(trialData, i) {
             return _.extend(new Trial, trialData, {
                 gameID: id,
                 trialNum : i,
