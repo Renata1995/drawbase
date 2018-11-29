@@ -106,9 +106,9 @@ jsPsych.plugins["image-button-response"] = (function() {
 
     plugin.trial = function(display_element, trial) {
 
-        if(typeof trial.image_url === 'undefined'){
-            console.error('Required parameter "stimulus" missing in image-button-response');
-        }
+        // if(typeof trial.image_url === 'undefined'){
+        //     console.error('Required parameter "stimulus" missing in image-button-response');
+        // }
 
         // wrapper function to show everything, call this when you've waited what you
         // reckon is long enough for the data to come back from the db

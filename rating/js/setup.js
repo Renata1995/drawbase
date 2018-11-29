@@ -99,7 +99,6 @@ function setupGame () {
     };
 
     socket.on('onConnected', function(d) {
-        console.log('socket on');
         // get workerId, etc. from URL (so that it can be sent to the server)
         var turkInfo = jsPsych.turk.turkInfo();
 

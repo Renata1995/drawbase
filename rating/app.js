@@ -44,6 +44,7 @@ app.get('/*', (req, res) => {
     // serveFile(req, res);
     var id = req.query.workerId;
 if(!id || id === 'undefined') {
+    console.log('id undefined');
     serveFile(req, res);
 } else if(!valid_id(id)) {
     // If invalid id, block them
@@ -119,7 +120,7 @@ var handleInvalidID = function(req, res) {
 function checkPreviousParticipant (workerId, callback) {
     var p = {'workerId': workerId};
     var postData = {
-        dbname: '3dObjects',
+        dbname: 'tracing_rating',
         query: p,
         projection: {'_id': 1}
     };
@@ -155,12 +156,7 @@ function initializeWithTrials(socket, id) {
     }, (error, res, body) => {
         if (!error && res.statusCode === 200) {
         // send trial list (and id) to client
-        var packet = {
-            id: id,
-            recogID: body.recogID,
-            trials: body.meta
-        };
-        socket.emit('onConnected', packet);
+        socket.emit('onConnected', body);
     }else {
         console.log(`error getting stims: ${error} ${body}`);
     }
