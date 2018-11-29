@@ -1,5 +1,6 @@
 var oldCallback;
 var score = 0;
+var num_trials = 10;
 
 function sendData() {
     console.log('sending data to mturk');
@@ -59,10 +60,8 @@ var goodbyeTrial = {
 function Trial () {
     this.type = 'image-button-response';
     this.iterationName = 'pilot0';
-    this.num_trials = 10;
     this.dev_mode = false;
     this.prompt = "Compared to the reference image, what's the score do you think this tracing would get?";
-    this.image_id = "IMAGE_ID";
     this.image_url = "/demo.png";
     this.category ='square';
     this.choices = ['1','2','3','4','5'];
@@ -87,9 +86,9 @@ function setupGame () {
         var newCallback = function(d) {
             console.log('data retrieved from db: ',d);
             trial.category = d.category;
-            trial.image_id = d.image_id;
             trial.image_url = d.image_url;
             trial.age = d.age;
+            trial.session_id = d.session_id;
 
         };
         socket.removeListener('stimulus', oldCallback);
@@ -108,7 +107,7 @@ function setupGame () {
 	
 	console.log(d.trials);
         // Bind trial data with boilerplate
-        var trials = _.map(_.rangeRight(10), function(trialData, i) {
+        var trials = _.map(_.rangeRight(num_trials), function(trialData, i) {
             return _.extend(new Trial, trialData, {
                 gameID: id,
                 trialNum : i,
