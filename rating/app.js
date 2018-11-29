@@ -145,7 +145,7 @@ function checkPreviousParticipant (workerId, callback) {
 };
 
 function initializeWithTrials(socket, id) {
-    sendPostRequest('http://localhost:6000/db/getstims', {
+    sendPostRequest('http://localhost:6002/db/getstims', {
         json: {
             dbname: 'stimuli',
             colname: 'kiddraw_tracing_eval',
