@@ -122,7 +122,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             }
 
             // place the target drawing inside the image container (which has fixed location)
-            html += '<div id="img_container" style="display:none">';
+            html += '<div id="img_container">';
 
             var img_html_replaced = trial.image_html.replace('imageURL', trial.image_url);
             html += img_html_replaced;
