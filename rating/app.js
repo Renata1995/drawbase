@@ -97,10 +97,7 @@ io.on('connection', function (socket) {
 
     // upon connecting, tell the client some metainfo
     socket.emit('onConnected', {
-        id: UUID(),
-        meta: {
-            num_trials: num_trials
-        }
+        id: UUID()
     });
 
 

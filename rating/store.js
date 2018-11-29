@@ -111,7 +111,7 @@ function serve() {
     });
 
 
-    app.post('/db/getstims', (request, response) => {
+    app.post('/db/getsinglestim', (request, response) => {
       if (!request.body) {
         return failure(response, '/db/getstims needs post request body');
       }
@@ -144,6 +144,8 @@ function serve() {
         }
       });
     });
+
+
 
     app.listen(port, () => {
       log(`running at http://localhost:${port}`);

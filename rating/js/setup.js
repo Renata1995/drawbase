@@ -36,15 +36,15 @@ var welcomeTrial = {
 };
 
 var acceptHTML = {
-  'str1' : '<p> Welcome! In this HIT, you will see some sketches of objects. For each sketch, you will try to guess which of the objects is the best match. </p>',
-  'str2' : '<p> This is only a demo! If you are interested in participating, please accept the HIT in MTurk before continuing further. </p>'
+    'str1' : '<p> Welcome! In this HIT, you will see some sketches of objects. For each sketch, you will try to guess which of the objects is the best match. </p>',
+    'str2' : '<p> This is only a demo! If you are interested in participating, please accept the HIT in MTurk before continuing further. </p>'
 }
 
 var previewTrial = {
-  type: 'instructions',
-  pages: [acceptHTML.str1, acceptHTML.str2],
-  show_clickable_nav: true,
-  allow_keys: false
+    type: 'instructions',
+    pages: [acceptHTML.str1, acceptHTML.str2],
+    show_clickable_nav: true,
+    allow_keys: false
 }
 
 var goodbyeTrial = {
@@ -77,32 +77,32 @@ function setupGame () {
         var turkInfo = jsPsych.turk.turkInfo();
 
         // pull out info from server
-        var id = d.session_id;
+        var id = d.id;
 
-	// at end of each trial save score locally and send data to server
-	var main_on_finish = function(data) {
+        // at end of each trial save score locally and send data to server
+        var main_on_finish = function(data) {
             if (data.score) {
-		score = data.score;
+                score = data.score;
             }
             socket.emit('currentData', data);
-	};
+        };
 
-	var main_on_start = function(trial) {
-            
+        var main_on_start = function(trial) {
+
             oldCallback = newCallback;
             var newCallback = function(d) {
-		trial.category = d.category;
-		trial.image_url = d.image_url;
-		trial.age = d.age;
-		trial.session_id = d.session_id;
+                trial.category = d.category;
+                trial.image_url = d.image_url;
+                trial.age = d.age;
+                trial.session_id = d.session_id;
 
             };
             socket.removeListener('stimulus', oldCallback);
             socket.on('stimulus', newCallback);
             // call server for stims
             socket.emit('getStim', {gameID: id});
-	};
-	
+        };
+
         // Bind trial data with boilerplate
         var trials = _.map(_.rangeRight(num_trials), function(trialData, i) {
             return _.extend(new Trial, trialData, {
