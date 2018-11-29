@@ -163,7 +163,6 @@ function initializeWithTrials(socket, id) {
 });
 }
 
-
 function writeDataToMongo (data) {
     sendPostRequest(
         'http://localhost:6002/db/insert',

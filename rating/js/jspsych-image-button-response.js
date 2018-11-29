@@ -228,7 +228,6 @@ jsPsych.plugins["image-button-response"] = (function() {
             jsPsych.finishTrial(trial_data);
 
 
-
         };
 
 
