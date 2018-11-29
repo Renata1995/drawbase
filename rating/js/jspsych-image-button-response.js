@@ -41,7 +41,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             session_id: {
                 type: jsPsych.plugins.parameterType.STRING,
                 pretty_name: 'session id',
-                default: undefined,
+                default: 'default_session_id',
                 array: true,
                 description: 'The unique identifer for each image'
             },
