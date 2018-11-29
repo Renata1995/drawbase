@@ -88,10 +88,9 @@ function setupGame () {
 	};
 
 	var main_on_start = function(trial) {
-            console.log("main on start");
+            
             oldCallback = newCallback;
             var newCallback = function(d) {
-		console.log('data retrieved from db: ',d);
 		trial.category = d.category;
 		trial.image_url = d.image_url;
 		trial.age = d.age;
