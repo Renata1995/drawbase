@@ -94,17 +94,21 @@ function setupGame () {
         socket.removeListener('stimulus', oldCallback);
         socket.on('stimulus', newCallback);
         // call server for stims
-        socket.emit('getStim');
+        socket.emit('getStim', {gameID: id});
     };
 
     socket.on('onConnected', function(d) {
         // get workerId, etc. from URL (so that it can be sent to the server)
         var turkInfo = jsPsych.turk.turkInfo();
 
+        // pull out info from server
+        var meta = d.meta;
+        var id = d.id;
 
         // Bind trial data with boilerplate
         var trials = _.map(_.rangeRight(num_trials), function(trialData, i) {
             return _.extend(new Trial, trialData, {
+                gameID: id,
                 trialNum : i,
                 choices: ['1','2','3','4','5'],
                 post_trial_gap: 1000, // add brief ITI between trials

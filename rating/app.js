@@ -150,7 +150,8 @@ function initializeWithTrials(socket, id) {
         json: {
             dbname: 'stimuli',
             colname: 'kiddraw_tracing_eval',
-            numTrials: 1
+            numTrials: 1,
+            gameid: id
         }
     }, (error, res, body) => {
         if (!error && res.statusCode === 200) {
