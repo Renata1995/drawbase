@@ -103,7 +103,7 @@ button {
     color: #f5f4f4;
     font-weight: bold;
     font-family: 'Open Sans', 'Arial', sans-serif;
-    font-size: 1.2em;
+    font-size: 1em;
     cursor: pointer;
 }
 
@@ -373,4 +373,6 @@ button:hover {
     margin-top: 3vh;
     margin-right: auto;
     margin-bottom: 3vh;
+    width:400px;
+    height:400px;
 }

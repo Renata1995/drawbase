@@ -17,9 +17,22 @@ var consentHTML = {
 
 var instructionsHTML = {
     'str1' : "<p> Here's how the game will work: On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate whether the tracing both captures the shape of the reference accurately and aligns with the reference shape precisely.",
-    'str2' : '<p> It is very important that you consider the rating scale carefully and try your best!',
-    'str3' : "<p> Once you are finished, the HIT will be automatically submitted for approval. Let's begin! </p>"
+    'str2' : '<p> The rating scale ranges from 1 (poor performance) to 5 (excellent performance). It is very important that you consider the rating scale carefully and try your best!',
+    'str3' : ['<p> Here are some example excellent tracings which are qualified for score 5 and some poor tracings which are rated as score 1.</p>',
+        '<p>Example tracing with score 5: </p>',
+        '<div><img src="img/t5_square.png"><img src="img/t5_shape.png"><img src="img/t5_circle.png"></div>'
+        '<p>Example tracing with score 1: </p>',
+        ].join(' '),
+    'str4' : ['<p> The following behaviors would also reduce the score of tracing: </p>',
+        '<ul><li><p>Add extra objects to the tracing (e.g. scribbles, heart, flower, smiling faces) </p><img src="img/extra.png"></li>',
+        '<li><p>Paint the shape rather than drawing the shape by lines</p><img src="img/paint.png"></li></ul>',].join(' '),
+    'str5' : "<p> Once you are finished, the HIT will be automatically submitted for approval. Let's begin! </p>"
 };
+
+
+
+
+
 
 var welcomeTrial = {
     type: 'instructions',
