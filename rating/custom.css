@@ -15,22 +15,22 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
 html {
- font-family: 'Open Sans', 'Arial', sans-serif;
- font-size: 18px;
- line-height: 1.6em;
+    font-family: 'Open Sans', 'Arial', sans-serif;
+    font-size: 18px;
+    line-height: 1.6em;
 }
 
 body {
-	margin: 0;
-	padding: 0;
-  background-color: rgb(127,127,127);
+    margin: 0;
+    padding: 0;
+    background-color: #eaecee;
 }
 
 p {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  clear:both;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    clear:both;
 }
 
 .very-small {
@@ -68,21 +68,22 @@ p {
 }
 
 #prompt {
-   text-align: center;
-   font-weight: bold;
-   margin: 4px 8px; 
+    text-align: center;
+    font-weight: bold;
+    margin: 4vh;
+    font-size: 1.5em;
 }
 
 #jspsych-image-button-response-utterance {
-  text-align: center;
-  font-size: 32pt;
-  font-style: italic
+    text-align: center;
+    font-size: 32pt;
+    font-style: italic
 }
 
 #jspsych-image-button-response-btngroup {
-  margin: auto;
-  padding: 10px;
-  text-align: center;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
 }
 /*
  *
@@ -97,12 +98,12 @@ input[type="text"] {
 
 button {
     padding: 0.8em;
-    background-color: #eaeaea;
-    border: 1px solid #eaeaea;
-    color: #555;
+    background-color: #47525d;
+    border: 1px solid #47525d;
+    color: #f5f4f4;
     font-weight: bold;
     font-family: 'Open Sans', 'Arial', sans-serif;
-    font-size: 14px;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
@@ -130,12 +131,12 @@ button:hover {
  */
 
 #jspsych-progressbar-container {
-	color: #777;
-	border-bottom: 2px solid #dedede;
-	background-color: #f3f3f3;
-	margin-bottom: 0em;
-	text-align: center;
-	padding: 0px 0px;
+    color: #777;
+    border-bottom: 2px solid #dedede;
+    background-color: #f3f3f3;
+    margin-bottom: 0em;
+    text-align: center;
+    padding: 0px 0px;
 }
 
 #jspsych-progressbar-container s {
@@ -143,18 +144,18 @@ button:hover {
 }
 
 #jspsych-progressbar-outer {
-	background-color: #dedede;
-	border-radius: 5px;
-	padding: 1px;
-	width: 800px;
-	margin: auto;
+    background-color: #dedede;
+    border-radius: 5px;
+    padding: 1px;
+    width: 800px;
+    margin: auto;
 }
 
 #jspsych-progressbar-inner {
-	background-color: #aaa; /* #3EB3D7; */
-	width: 0%;
-	height: 1em;
-	border-radius: 5px;
+    background-color: #aaa; /* #3EB3D7; */
+    width: 0%;
+    height: 1em;
+    border-radius: 5px;
 }
 
 /*
@@ -212,13 +213,13 @@ button:hover {
 }
 
 .jspsych-free-sort-draggable {
-  cursor: move;
+    cursor: move;
 }
 
 #jspsych-free-sort-done-btn {
-  display: block;
-  margin: auto;
-  margin-top: 25px;
+    display: block;
+    margin: auto;
+    margin-top: 25px;
 }
 
 /*
@@ -227,14 +228,18 @@ button:hover {
  *
  */
 
- .jspsych-instructions-nav {
-   text-align: center;
-   margin-top: 2em;
- }
+.jspsych-instructions-nav {
+    text-align: center;
+    margin-top: 4vh;
+}
 
- .jspsych-instructions-nav button {
-   margin: 20px;
- }
+.jspsych-instructions-nav button {
+    margin: 20px;
+}
+#jspsych-content{
+    margin-top: 4vh;
+    font-size: 1.2em;
+}
 /*
  *
  * PLUGIN: jspsych-multi-stim-multi-response
@@ -242,8 +247,8 @@ button:hover {
  */
 
 #jspsych-multi-stim-multi-response-stimulus {
-  display: block;
-  margin: auto;
+    display: block;
+    margin: auto;
 }
 
 /*
@@ -287,37 +292,45 @@ button:hover {
  *
  */
 
- .jspsych-survey-text {
-     margin: 0.25em 0em;
- }
+.jspsych-survey-text {
+    margin: 0.25em 0em;
+}
 
- .jspsych-survey-text-question {
-     margin: 2em 0em;
- }
+.jspsych-survey-text-question {
+    margin: 2em 0em;
+}
 
- /*
-  *
-  * PLUGIN: jspsych-survey-likert
-  *
-  */
+/*
+ *
+ * PLUGIN: jspsych-survey-likert
+ *
+ */
 
 .jspsych-survey-likert-sliderlabels {
-  font-size: 75%;
-  line-height: 1.15em;
+    font-size: 75%;
+    line-height: 1.15em;
 }
 
 .jspsych-survey-likert-question {
-  margin-top: 2em;
-  margin-bottom: 2em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .jspsych-survey-likert-text {
-  text-align: center;
+    text-align: center;
 }
 
 #jspsych-survey-likert-next {
-  display: block;
-  margin: auto;
+    display: block;
+    margin: auto;
+}
+
+#upper_bound{
+    margin-left:2vw;
+}
+
+#lower_bound{
+    margin-right:2vw;
 }
 
 /*
@@ -327,9 +340,9 @@ button:hover {
 */
 
 #jspsych-visual-search-circle-svg {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
@@ -339,8 +352,8 @@ button:hover {
  */
 
 #jspsych-vsl-animate-occlusion-canvas {
-  display: block;
-  margin: auto;
+    display: block;
+    margin: auto;
 }
 
 /*
@@ -349,8 +362,15 @@ button:hover {
  *
  */
 
- .jspsych-xab-stimulus {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
- }
+.jspsych-xab-stimulus {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#img_html{
+    display: block;
+    margin-left: auto;
+    margin-top: 3vh;
+    margin-right: auto;
+    margin-bottom: 3vh;
+}

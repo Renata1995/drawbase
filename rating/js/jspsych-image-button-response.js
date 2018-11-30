@@ -27,7 +27,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             image_html: {
                 type: jsPsych.plugins.parameterType.IMAGE,
                 pretty_name: 'image HTML',
-                default: '<img src="%imageURL%" height="400" width="400" id="image_html" style="display:block;margin-left:auto;margin-right:auto">',
+                default: '<img src="%imageURL%" height="400" width="400" id="image_html">',
                 array: true,
                 description: 'The html of the image cue used to prompt drawing. Can create own style.'
             },
@@ -44,6 +44,20 @@ jsPsych.plugins["image-button-response"] = (function() {
                 default: 'default_session_id',
                 array: true,
                 description: 'The unique identifer for each image'
+            },
+            upper_bound:{
+                type: jsPsych.plugins.parameterType.STRING,
+                pretty_name: 'upper_bound',
+                default: '0',
+                array: true,
+                description: 'The upper bound label of the rating'
+            },
+            lower_bound:{
+                type: jsPsych.plugins.parameterType.STRING,
+                pretty_name: 'lower_bound',
+                default: '0',
+                array: true,
+                description: 'The lower bound label of the rating'
             },
             choices: {
                 type: jsPsych.plugins.parameterType.STRING,
@@ -144,13 +158,13 @@ jsPsych.plugins["image-button-response"] = (function() {
                     buttons.push(trial.button_html);
                 }
             }
-            html += '<div id="jspsych-image-button-response-btngroup">';
+            html += '<div id="jspsych-image-button-response-btngroup"> <label id="lower_bound">' + trial.lower_bound + '</label>';
 
             for (var i = 0; i < trial.choices.length; i++) {
                 var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                 html += '<div class="jspsych-image-button-response-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
             }
-            html += '</div>';
+            html += '</div> <label id="lower_bound">' + trial.upper_bound + '</label>';
 
             display_element.innerHTML = html;
 
@@ -166,7 +180,7 @@ jsPsych.plugins["image-button-response"] = (function() {
         }
 
         // wait for a little bit for data to come back from db, then show_display
-        setTimeout(function() {show_display(); }, 1500);
+        setTimeout(function() {show_display(); }, 500);
 
         // store response
         var response = {
