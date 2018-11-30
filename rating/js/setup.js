@@ -12,12 +12,12 @@ var consentHTML = {
     'str2' : '<p>We expect the average game to last approximately 10-15 minutes, including the time it takes to read instructions.</p>',
     'str3' : "<p>If you encounter a problem or error, send us an email (sketchloop@gmail.com) and we will make sure you're compensated for your time! Please pay attention and do your best! Thank you!</p><p> Note: We recommend using Chrome. We have not tested this HIT in other browsers.</p>",
     'str4' : ["<u><p id='legal'>Consenting to Participate:</p></u>",
-        "<p id='legal'>By completing this HIT, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact the <b>Sketchloop Admin</b> at <b><a href='mailto://sketchloop@gmail.com'>sketchloop@gmail.com</a> </b> or Noah Goodman (n goodma at stanford dot edu) You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>"].join(' ')
+        "<p id='legal'>By completing this HIT, you are participating in a study being performed by cognitive scientists in the Stanford Department of Psychology. If you have questions about this research, please contact the <b>Sketchloop Admin</b> at <b><a href='mailto://sketchloop@gmail.com'>sketchloop@gmail.com</a> </b> or Zixian Chai (zchai14@stanford.edu) You must be at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you.</p>"].join(' ')
 };
 
 var instructionsHTML = {
-    'str1' : "<p> Here's how the game will work: On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate whether the tracing both captures the shape of the reference accurately and aligns with the reference shape precisely.",
-    'str2' : '<p> It is very important that you consider the rating scale carefully and try your best!',
+    'str1' : "<p> Here's how the game will work: </p> <p>On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate whether the tracing both captures the shape of the reference accurately and spatially aligns with the reference shape precisely.</p>",
+    'str2' : '<p> It is very important that you consider the rating scale carefully and try your best!</p>',
     'str3' : "<p> Once you are finished, the HIT will be automatically submitted for approval. Let's begin! </p>"
 };
 
@@ -95,7 +95,7 @@ function setupGame () {
                 trial.image_url = d.img_url;
                 trial.age = d.age;
                 trial.session_id = d.session_id;
-                trial.choices = _.rangeRight(d.number_rating_levels);
+                trial.choices = _.range(1, d.number_rating_levels+1);
                 trial.upper_bound = d.upper_bound;
                 trial.lower_bound = d.lower_bound;
 

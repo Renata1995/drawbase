@@ -71,7 +71,7 @@ p {
     text-align: center;
     font-weight: bold;
     margin: 4vh;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 #jspsych-image-button-response-utterance {
@@ -103,7 +103,7 @@ button {
     color: #f5f4f4;
     font-weight: bold;
     font-family: 'Open Sans', 'Arial', sans-serif;
-    font-size: 1.2em;
+    font-size: 0.8em;
     cursor: pointer;
 }
 
@@ -238,7 +238,7 @@ button:hover {
 }
 #jspsych-content{
     margin-top: 4vh;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 /*
  *
@@ -331,6 +331,7 @@ button:hover {
 
 #lower_bound{
     margin-right:2vw;
+    margin-left:4vw;
 }
 
 /*
@@ -367,7 +368,7 @@ button:hover {
     margin-left: auto;
     margin-right: auto;
 }
-#img_html{
+#image_html{
     display: block;
     margin-left: auto;
     margin-top: 3vh;
