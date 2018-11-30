@@ -1,3 +1,4 @@
+
 /**
  * jspsych-image-button-response
  * Josh de Leeuw
@@ -158,13 +159,14 @@ jsPsych.plugins["image-button-response"] = (function() {
                     buttons.push(trial.button_html);
                 }
             }
-            html += '<div id="jspsych-image-button-response-btngroup"> <label id="lower_bound">' + trial.lower_bound + '</label>';
+            html += '<div id="jspsych-image-button-response-btngroup"> <label id="lower_bound"><b>' + trial.lower_bound.toUpperCase()
+		+ '</b></label>';
 
             for (var i = 0; i < trial.choices.length; i++) {
                 var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                 html += '<div class="jspsych-image-button-response-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
             }
-            html += '</div> <label id="lower_bound">' + trial.upper_bound + '</label>';
+            html += '<label id="upper_bound"><b>' + trial.upper_bound.toUpperCase() + '</b></label></div>';
 
             display_element.innerHTML = html;
 
