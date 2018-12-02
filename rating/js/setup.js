@@ -43,7 +43,7 @@ var welcomeTrial = {
         instructionsHTML.str1,
         instructionsHTML.str2,
         instructionsHTML.str3,
-	instructionsHTML.str4
+	    instructionsHTML.str4
     ],
     show_clickable_nav: true
 };
