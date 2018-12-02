@@ -70,7 +70,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             button_html: {
                 type: jsPsych.plugins.parameterType.STRING,
                 pretty_name: 'Button HTML',
-                default: '<button class="jspsych-btn">%choice%</button>',
+                default: '<button class="jspsych-btn" disabled="true">%choice%</button>',
                 array: true,
                 description: 'The html of the button. Can create own style.'
             },
@@ -164,28 +164,29 @@ jsPsych.plugins["image-button-response"] = (function() {
 
             for (var i = 0; i < trial.choices.length; i++) {
                 var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-                html += '<div class="jspsych-image-button-response-button" disabled="true" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
+                html += '<div class="jspsych-image-button-response-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
             }
             html += '<label id="upper_bound"><b>' + trial.upper_bound.toUpperCase() + '</b></label></div>';
 
             display_element.innerHTML = html;
             setTimeout(function(){after_observation();},2000);
 
-            // start timing
-            start_time = performance.now();
-
-            for (var i = 0; i < trial.choices.length; i++) {
-                display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
-                    var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
-                    after_response(choice);
-                });
-            }
-
         }
 
         function after_observation(){
-            $('.jspsych-image-button-response-button').disabled = false;
+            $('.jspsych-btn').attr("disabled", false);
+//	    $('.jspsych-btn').css('background-color','#47525d');
+	    
+	    // start timing
+	    start_time = performance.now();
 
+	    for (var i = 0; i < trial.choices.length; i++) {
+		display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
+		    var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
+		    after_response(choice);
+		});
+	    }
+	    
         }
 
         // wait for a little bit for data to come back from db, then show_display

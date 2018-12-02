@@ -1,6 +1,6 @@
 var oldCallback;
 var score = 0;
-var num_trials = 10;
+var num_trials = 100;
 
 function sendData() {
     console.log('sending data to mturk');
