@@ -74,7 +74,7 @@ function Trial () {
     this.type = 'image-button-response';
     this.iterationName = 'pilot0';
     this.dev_mode = false;
-    this.prompt = "Compared to the reference image, what's the score do you think this tracing would get?";
+    this.prompt = "Compared to the reference image, what's the score do you think this tracing would get? The rating scale will be enabled after two seconds";
     this.image_url = "/demo.png";
     this.category ='square';
     this.choices = ['1','2','3','4','5'];

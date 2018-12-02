@@ -127,7 +127,7 @@ jsPsych.plugins["image-button-response"] = (function() {
 
         // wrapper function to show everything, call this when you've waited what you
         // reckon is long enough for the data to come back from the db
-	var start_time = 0;
+        var start_time = 0;
         function show_display() {
 
             var html = "";
@@ -139,10 +139,10 @@ jsPsych.plugins["image-button-response"] = (function() {
 
             // place the target drawing inside the image container (which has fixed location)
             html += '<div id="img_container">';
-	    
+
             var img_html_replaced = trial.image_html.replace('%imageURL%', trial.image_url);
-	        console.log('img_html_replaced' + img_html_replaced);
-	        html += img_html_replaced;
+            console.log('img_html_replaced' + img_html_replaced);
+            html += img_html_replaced;
 
             html += '</div>';
 
@@ -159,22 +159,18 @@ jsPsych.plugins["image-button-response"] = (function() {
                     buttons.push(trial.button_html);
                 }
             }
-            html += '<div id="jspsych-image-button-response-btngroup" style="display:none"> <label id="lower_bound"><b>' + trial.lower_bound.toUpperCase()
-		+ '</b></label>';
+            html += '<div id="jspsych-image-button-response-btngroup"> <label id="lower_bound"><b>' + trial.lower_bound.toUpperCase()
+                + '</b></label>';
 
             for (var i = 0; i < trial.choices.length; i++) {
                 var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
-                html += '<div class="jspsych-image-button-response-button" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
+                html += '<div class="jspsych-image-button-response-button" disabled="true" style="display: inline-block; margin:' + trial.margin_vertical + ' ' + trial.margin_horizontal + '" id="jspsych-image-button-response-button-' + i + '" data-choice="' + i + '">' + str + '</div>';
             }
             html += '<label id="upper_bound"><b>' + trial.upper_bound.toUpperCase() + '</b></label></div>';
 
             display_element.innerHTML = html;
-            setTimeout(function(){after_observation();},3000);
+            setTimeout(function(){after_observation();},2000);
 
-        }
-
-            function after_observation(){
-            $('#jspsych-image-button-response-btngroup').fadeIn();
             // start timing
             start_time = performance.now();
 
@@ -184,10 +180,16 @@ jsPsych.plugins["image-button-response"] = (function() {
                     after_response(choice);
                 });
             }
+
+        }
+
+        function after_observation(){
+            $('.jspsych-image-button-response-button').disabled = false;
+
         }
 
         // wait for a little bit for data to come back from db, then show_display
-        setTimeout(function() {show_display(); }, 1000);
+        setTimeout(function() {show_display(); }, 600);
 
         // store response
         var response = {
@@ -203,7 +205,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             var rt = end_time - start_time;
             response.button = choice;
             response.rt = rt;
-	    
+
             // disable all the buttons after a response
             var btns = document.querySelectorAll('.jspsych-image-button-response-button button');
             for(var i=0; i<btns.length; i++){
