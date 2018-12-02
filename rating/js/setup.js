@@ -141,8 +141,6 @@ function setupGame () {
         }
         trials.push(goodbyeTrial);
 
-        console.log(trials);
-
         jsPsych.init({
             timeline: trials,
             default_iti: 1000,
