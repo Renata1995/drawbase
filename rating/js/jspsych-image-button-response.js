@@ -82,7 +82,7 @@ jsPsych.plugins["image-button-response"] = (function() {
             },
             message: {
                 type: jsPsych.plugins.parameterType.STRING,
-                pretty_name: 'Prompt',
+                pretty_name: 'Message',
                 default: null,
                 description: 'Ask the mturker to pay attention to some specific details.'
             },
@@ -142,10 +142,10 @@ jsPsych.plugins["image-button-response"] = (function() {
             if (trial.prompt !== null) {
                 var html = '<div id="prompt">' + trial.prompt + '</div>';
             }
-
+	    console.log("prompt" + trial.prompt);
             // display the message
             if (trial.message !== null) {
-                var html = '<div class="msg-alert" id="message">' + trial.message.alert + '</div>';
+                html += '<div class="msg-alert" id="message">' + trial.message.alert + '</div>';
             }
 
             // place the target drawing inside the image container (which has fixed location)
