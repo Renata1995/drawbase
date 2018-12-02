@@ -141,8 +141,8 @@ jsPsych.plugins["image-button-response"] = (function() {
             html += '<div id="img_container">';
 	    
             var img_html_replaced = trial.image_html.replace('%imageURL%', trial.image_url);
-	    console.log('img_html_replaced' + img_html_replaced);
-	    html += img_html_replaced;
+	        console.log('img_html_replaced' + img_html_replaced);
+	        html += img_html_replaced;
 
             html += '</div>';
 
@@ -159,7 +159,7 @@ jsPsych.plugins["image-button-response"] = (function() {
                     buttons.push(trial.button_html);
                 }
             }
-            html += '<div id="jspsych-image-button-response-btngroup"> <label id="lower_bound"><b>' + trial.lower_bound.toUpperCase()
+            html += '<div id="jspsych-image-button-response-btngroup" style="display:none"> <label id="lower_bound"><b>' + trial.lower_bound.toUpperCase()
 		+ '</b></label>';
 
             for (var i = 0; i < trial.choices.length; i++) {
@@ -169,7 +169,12 @@ jsPsych.plugins["image-button-response"] = (function() {
             html += '<label id="upper_bound"><b>' + trial.upper_bound.toUpperCase() + '</b></label></div>';
 
             display_element.innerHTML = html;
+            after_observation(1000);
 
+        }
+
+        function after_observation(time){
+            setTimeout($('#jspsych-image-button-response-btngroup').fadeIn(), time);
             // start timing
             start_time = performance.now();
 
