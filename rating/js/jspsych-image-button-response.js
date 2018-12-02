@@ -80,6 +80,12 @@ jsPsych.plugins["image-button-response"] = (function() {
                 default: null,
                 description: 'Any content here will be displayed under the button.'
             },
+            message: {
+                type: jsPsych.plugins.parameterType.STRING,
+                pretty_name: 'Prompt',
+                default: null,
+                description: 'Ask the mturker to pay attention to some specific details.'
+            },
             stimulus_duration: {
                 type: jsPsych.plugins.parameterType.INT,
                 pretty_name: 'Stimulus duration',
@@ -137,6 +143,11 @@ jsPsych.plugins["image-button-response"] = (function() {
                 var html = '<div id="prompt">' + trial.prompt + '</div>';
             }
 
+            // display the message
+            if (trial.message !== null) {
+                var html = '<div class="msg-alert" id="message">' + trial.message.alert + '</div>';
+            }
+
             // place the target drawing inside the image container (which has fixed location)
             html += '<div id="img_container">';
 
@@ -175,17 +186,17 @@ jsPsych.plugins["image-button-response"] = (function() {
 
         function after_observation(){
             $('.jspsych-btn').attr("disabled", false);
-//	    $('.jspsych-btn').css('background-color','#47525d');
+            $('#message').removeClass('msg-alert').addClass('msg-continue').html(trial.message.continue);
 	    
-	    // start timing
-	    start_time = performance.now();
+            // start timing
+            start_time = performance.now();
 
-	    for (var i = 0; i < trial.choices.length; i++) {
-		display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
-		    var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
-		    after_response(choice);
-		});
-	    }
+            for (var i = 0; i < trial.choices.length; i++) {
+            display_element.querySelector('#jspsych-image-button-response-button-' + i).addEventListener('click', function (e) {
+                var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
+                after_response(choice);
+            });
+            }
 	    
         }
 

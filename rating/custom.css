@@ -74,6 +74,21 @@ p {
     font-size: 1em;
 }
 
+#message {
+    text-align: center;
+    font-weight: bold;
+    margin: 4vh;
+    font-size: 1em;
+}
+
+.msg-alert{
+    color:#8e0305ad;
+}
+
+.msg-continue{
+    color:#02693ba3;
+}
+
 #jspsych-image-button-response-utterance {
     text-align: center;
     font-size: 32pt;
