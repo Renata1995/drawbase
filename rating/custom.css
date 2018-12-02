@@ -107,8 +107,15 @@ button {
     cursor: pointer;
 }
 
+button:disabled{
+    background-color: #eaecee;
+    border: 1px solid #ccc;
+    color: #929eaa;
+}
+
 button:hover {
     border:1px solid #ccc;
+    Cursor:pointer;
 }
 
 /*
@@ -375,5 +382,33 @@ button:hover {
     margin-right: auto;
     margin-bottom: 3vh;
     width:400px;
-    height:400px;
+}
+
+.notice_img{
+    display:block;
+    Margin-left:auto;
+    margin-right:auto;
+    margin-top:3vh;
+    width:200px;
+}
+
+.eg_div{
+    text-align: center;
+}
+
+.eg_img{
+    width:200px;
+    margin:2vw;
+}
+
+ul {
+    list-style-position:inside;
+    Text-align:center;
+}
+
+#jspsych-instructions-back{
+     width:12vw;
+}
+#jspsych-instructions-next{
+     width:12vw;
 }
