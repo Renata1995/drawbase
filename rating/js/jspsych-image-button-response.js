@@ -169,12 +169,12 @@ jsPsych.plugins["image-button-response"] = (function() {
             html += '<label id="upper_bound"><b>' + trial.upper_bound.toUpperCase() + '</b></label></div>';
 
             display_element.innerHTML = html;
-            after_observation(1000);
+            setTimeout(function(){after_observation();},3000);
 
         }
 
-        function after_observation(time){
-            setTimeout($('#jspsych-image-button-response-btngroup').fadeIn(), time);
+            function after_observation(){
+            $('#jspsych-image-button-response-btngroup').fadeIn();
             // start timing
             start_time = performance.now();
 
@@ -187,7 +187,7 @@ jsPsych.plugins["image-button-response"] = (function() {
         }
 
         // wait for a little bit for data to come back from db, then show_display
-        setTimeout(function() {show_display(); }, 500);
+        setTimeout(function() {show_display(); }, 1000);
 
         // store response
         var response = {
