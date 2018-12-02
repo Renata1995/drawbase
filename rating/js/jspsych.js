@@ -933,7 +933,7 @@ window.jsPsych = (function() {
     function drawProgressBar() {
         document.querySelector('.jspsych-display-element').insertAdjacentHTML('afterbegin',
             '<div id="jspsych-progressbar-container">'+
-            '<span>Completion Progress <span id="finished_trials"></span>'+
+            '<span id="finished_trials">Completion Progress</span>'+
             '<div id="jspsych-progressbar-outer">'+
             '<div id="jspsych-progressbar-inner"></div>'+
             '</div></div>');
@@ -942,7 +942,8 @@ window.jsPsych = (function() {
     function updateProgressBar() {
         var progress = jsPsych.progress();
         document.querySelector('#jspsych-progressbar-inner').style.width = progress.percent_complete + "%";
-        $("#finished_trials").html(jsPsych.progress().current_trial_global + '/100');
+        var total_length = timeline.length()-2;
+        $("#finished_trials").html('Completion Progress: ' + jsPsych.progress().current_trial_global + '/' + total_length);
     }
 
     core.setProgressBar = function(proportion_complete){
