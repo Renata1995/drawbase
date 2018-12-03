@@ -1,11 +1,13 @@
 var oldCallback;
 var score = 0;
-var num_trials = 5;
+var num_trials = 20;
 
 function sendData() {
-
-    console.log('sending data to mturk');
-    jsPsych.turk.submitToTurk({'score':score});
+    var submit = confirm("Would you like to submit your data and leave this site?");
+    if(submit){
+	console.log('sending data to mturk');
+        jsPsych.turk.submitToTurk({'score':score});
+    }
 }
 
 var consentHTML = {
@@ -27,7 +29,7 @@ var instructionsHTML = {
         '<ul><li>Adding extra objects to the tracing (e.g. scribbles, heart, flower, smiling faces)<img class="notice_img" src="img/extra.png"></li>',
         '<li>Painting or "filling in" the reference shape, rather than tracing its outline<img class="notice_img" src="img/paint.png"></li></ul>',].join(' '),
     'str4':'<p> A different sketch will appear on each trial. After a brief two-second delay, the buttons will become active (dark gray) so you can submit your rating. Please take your time to provide as accurate of a rating as you can.</p> </p> <img class="rating_img" src="img/rating.png">',
-    'str5': "<p> When you finish, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click the submit button. Once you do so, the HIT will be automatically submitted for approval. Let's begin!"
+    'str5': "<p> When you finish, please click the submit button to finish the game . Let's begin!"
 };
 
 
@@ -63,7 +65,7 @@ var previewTrial = {
 var goodbyeTrial = {
     type: 'instructions',
     pages: [
-        '<p> Once you click the submit button, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click yes, which will trigger submission of this HIT to Amazon Mechanical Turk. </p>'
+        '<p> Once you click the submit button, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click the OK button, which will trigger submission of this HIT to Amazon Mechanical Turk. </p>'
     ],
     show_clickable_nav: true,
     allow_backward:false,
