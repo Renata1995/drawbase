@@ -99,7 +99,7 @@ jsPsych.plugins.instructions = (function() {
     }
 
     function show_current_page() {
-      var html = '<div id="current_instr" style="display:none">' + trial.pages[current_page] + '</div>';
+      var html = '<div id="current_instr">' + trial.pages[current_page] + '</div>';
 
       var pagenum_display = "";
       if(trial.show_page_number) {
@@ -123,7 +123,6 @@ jsPsych.plugins.instructions = (function() {
 
         html += nav_html;
         display_element.innerHTML = html;
-	    $("#current_instr").fadeIn(1000);
         if (current_page != 0 && trial.allow_backward) {
           display_element.querySelector('#jspsych-instructions-back').addEventListener('click', btnListener);
         }

@@ -62,7 +62,7 @@ var previewTrial = {
 var goodbyeTrial = {
     type: 'instructions',
     pages: [
-        '<p>Thanks for participating in our experiment! You are all done. Please click the button to submit this HIT.</p>'
+        '<p> Once you click the submit button, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click yes, which will trigger submission of this HIT to Amazon Mechanical Turk. </p>'
     ],
     show_clickable_nav: true,
     allow_backward:false,
