@@ -3,6 +3,7 @@ var score = 0;
 var num_trials = 5;
 
 function sendData() {
+
     console.log('sending data to mturk');
     jsPsych.turk.submitToTurk({'score':score});
 }
