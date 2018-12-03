@@ -77,7 +77,6 @@ function Trial () {
     this.dev_mode = false;
     this.prompt = "Please rate how well this tracing matches the reference shape.";
     this.image_url = "/demo.png";
-    this.category ='square';
     this.choices = ['1','2','3','4','5'];
     this.dev_mode = false
 }
