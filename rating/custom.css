@@ -407,6 +407,14 @@ button:hover {
     width:200px;
 }
 
+.rating_img{
+    display:block;
+    Margin-left:auto;
+    margin-right:auto;
+    margin-top:3vh;
+    width:600px;
+}
+
 .eg_div{
     text-align: center;
 }
