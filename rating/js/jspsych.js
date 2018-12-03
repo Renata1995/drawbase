@@ -943,7 +943,7 @@ window.jsPsych = (function() {
         var progress = jsPsych.progress();
         document.querySelector('#jspsych-progressbar-inner').style.width = progress.percent_complete + "%";
         var total_length = timeline.length()-2;
-        if (jsPsych.progress().current_trial_global <= totoal_length) {
+        if (jsPsych.progress().current_trial_global <= total_length) {
             $("#finished_trials").html('Completion Progress: ' + jsPsych.progress().current_trial_global + '/' + total_length);
         }
     }
