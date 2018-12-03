@@ -1,6 +1,6 @@
 var oldCallback;
 var score = 0;
-var num_trials = 100;
+var num_trials = 5;
 
 function sendData() {
     console.log('sending data to mturk');
@@ -16,20 +16,18 @@ var consentHTML = {
 };
 
 var instructionsHTML = {
-    'str1' : "<p> Here’s how the game will work: </p> <p> On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate whether the tracing both captures the shape of the reference accurately and aligns with the reference shape precisely. The rating scale ranges from 1 (POOR) to 5 (EXCELLENT).</p>",
-    'str2': ["<p>Here’s how the game will work: </p> <p> On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate whether the tracing both captures the shape of the reference accurately and aligns with the reference shape precisely. The rating scale ranges from 1 (POOR) to 5 (EXCELLENT). </p> <p> Here are some example tracings that should be given a score of 5 (EXCELLENT) and some tracings that should be given a score of 1 (POOR).</p>",
+    'str1' : "<p> Here’s how the game will work: </p> <p> On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate how accurately the tracing matches the SHAPE and is aligned to the POSITION of the reference. The rating scale ranges from 1 (POOR) to 5 (EXCELLENT).</p>",
+    'str2': ["<p>Here’s how the game will work: </p> <p> On each trial, you will see a tracing on top of a reference shape. The tracing is marked in red and the reference shape is in grey. Your goal is to rate how accurately the tracing matches the SHAPE and is aligned to the POSITION of the reference. The rating scale ranges from 1 (POOR) to 5 (EXCELLENT). </p> <p> Here are some example tracings that should be given a score of 5 (EXCELLENT) and some tracings that should be given a score of 1 (POOR).</p>",
         '<p>Example tracing with score 5: </p>',
               '<div class="eg_div"><img class="eg_img" src="img/t5_square.png"><img class="eg_img" src="img/t5_shape.png"><img class="eg_img" src="img/t5_circle.png"></div>',
               '<p>Example tracing with score 1: </p>',
 	      '<div class="eg_div"><img class="eg_img" src="img/t1_square.png"><img class="eg_img" src="img/t1_shape.png"><img class="eg_img" src="img/t1_circle.png"></div>'].join(' '),
     'str3': ['<p> If you notice any of the following, this should reduce the score you assign to that tracing:</p>',
-        '<ul><li>Add extra objects to the tracing (e.g. scribbles, heart, flower, smiling faces)<img class="notice_img" src="img/extra.png"></li>',
+        '<ul><li>Adding extra objects to the tracing (e.g. scribbles, heart, flower, smiling faces)<img class="notice_img" src="img/extra.png"></li>',
         '<li>Painting or "filling in" the reference shape, rather than tracing its outline<img class="notice_img" src="img/paint.png"></li></ul>',].join(' '),
-    'str4': "<p> Once you are finished, the HIT will be automatically submitted for approval. Let's begin! </p>"
+    'str4':'<p> A different sketch will appear on each trial. After a brief two-second delay, the buttons will become active (dark gray) so you can submit your rating. Please take your time to provide as accurate of a rating as you can.</p> </p> <img class="notice_img" src="img/paint.png">',
+    'str4': "<p> When you finish, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click the submit button. Once you do so, the HIT will be automatically submitted for approval. Let's begin!"
 };
-
-
-
 
 
 
@@ -66,6 +64,7 @@ var goodbyeTrial = {
         '<p>Thanks for participating in our experiment! You are all done. Please click the button to submit this HIT.</p>'
     ],
     show_clickable_nav: true,
+    button_label_next: 'Submit Your Answer!',
     on_finish: function() { sendData();}
 };
 
@@ -74,8 +73,7 @@ function Trial () {
     this.type = 'image-button-response';
     this.iterationName = 'pilot0';
     this.dev_mode = false;
-    this.prompt = "Compared to the reference image, what's the score do you think this tracing would get?";
-    this.message = {"alert": "The rating scale will be enabled after two seconds.", "continue": "Start rating!"};
+    this.prompt = "Please rate how well this tracing matches the reference shape.";
     this.image_url = "/demo.png";
     this.category ='square';
     this.choices = ['1','2','3','4','5'];

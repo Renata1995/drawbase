@@ -123,7 +123,7 @@ jsPsych.plugins.instructions = (function() {
 
         html += nav_html;
         display_element.innerHTML = html;
-	$("#current_instr").fadeIn(1000);
+	    $("#current_instr").fadeIn(1000);
         if (current_page != 0 && trial.allow_backward) {
           display_element.querySelector('#jspsych-instructions-back').addEventListener('click', btnListener);
         }

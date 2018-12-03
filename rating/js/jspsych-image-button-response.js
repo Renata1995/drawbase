@@ -186,7 +186,7 @@ jsPsych.plugins["image-button-response"] = (function() {
 
         function after_observation(){
             $('.jspsych-btn').attr("disabled", false);
-            $('#message').removeClass('msg-alert').addClass('msg-continue').html(trial.message.continue);
+            // $('#message').removeClass('msg-alert').addClass('msg-continue').html(trial.message.continue);
 	    
             // start timing
             start_time = performance.now();
