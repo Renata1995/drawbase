@@ -24,7 +24,7 @@ var instructionsHTML = {
 	      '<div class="eg_div"><img class="eg_img" src="img/t1_square.png"><img class="eg_img" src="img/t1_shape.png"><img class="eg_img" src="img/t1_circle.png"></div>'].join(' '),
     'str3': ['<p> If you notice any of the following, this should reduce the score you assign to that tracing:</p>',
         '<ul><li>Adding extra objects to the tracing (e.g. scribbles, heart, flower, smiling faces)<img class="notice_img" src="img/extra.png"></li>',
-        '<li>Painting or "filling in" the reference shape, rather than tracing its outline<img class="notice_img" src="img/paint.png"></li></ul>',].join(' '),
+        '<li>Painting or "filling in" the reference shape, rather than tracing its outline<img class="notice_img" src="img/rating.png"></li></ul>',].join(' '),
     'str4':'<p> A different sketch will appear on each trial. After a brief two-second delay, the buttons will become active (dark gray) so you can submit your rating. Please take your time to provide as accurate of a rating as you can.</p> </p> <img class="notice_img" src="img/paint.png">',
     'str4': "<p> When you finish, you will be prompted with a pop-up asking you if you are sure that you want to leave the site. Please click the submit button. Once you do so, the HIT will be automatically submitted for approval. Let's begin!"
 };
@@ -64,7 +64,8 @@ var goodbyeTrial = {
         '<p>Thanks for participating in our experiment! You are all done. Please click the button to submit this HIT.</p>'
     ],
     show_clickable_nav: true,
-    button_label_next: 'Submit Your Answer!',
+    allow_backward:false,
+    button_label_next: 'Submit the HIT',
     on_finish: function() { sendData();}
 };
 
